@@ -24,6 +24,7 @@ const App = () => {
         value={inputValue.get()}
         onChange={event => inputValue.set(event.target.value)}
         placeholder="Add task here..."
+        required
       />
 
       <button className="btn btn-primary ms-3" type="submit" onClick={addTask}>
