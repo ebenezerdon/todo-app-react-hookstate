@@ -17,7 +17,7 @@ const App = () => {
     <div className="container mt-5">
     <h1 className="mb-4">Whattodo!</h1>
 
-    <form className="mb-5">
+    <form className="mb-5" onSubmit={addTask}>
       <input
         type="text"
         className="p-1 w-25"
@@ -27,7 +27,7 @@ const App = () => {
         required
       />
 
-      <button className="btn btn-primary ms-3" type="submit" onClick={addTask}>
+      <button className="btn btn-primary ms-3" type="submit">
         Add task
       </button>
     </form>
