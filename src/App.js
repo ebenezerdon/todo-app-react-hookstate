@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import NotCompleted from './components/NotCompleted'
+import Completed from './components/Completed'
+import { useState } from '@hookstate/core'
+import store from './store'
 
-function App() {
+const App = () => {
+  const { tasks } = useState(store)
+  const inputValue = useState('')
+
+  const addTask = event => {
+    event.preventDefault()
+    tasks.merge([{text: inputValue.get(), status: 'not-completed'}])
+    inputValue.set('')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div className="container mt-5">
+    <h1 className="mb-4">Whattodo!</h1>
 
-export default App;
+    <form className="mb-5">
+      <input
+        type="text"
+        className="p-1 w-25"
+        value={inputValue.get()}
+        onChange={event => inputValue.set(event.target.value)}
+        placeholder="Add task here..."
+      />
+
+      <button className="btn btn-primary ms-3" type="submit" onClick={addTask}>
+        Add task
+      </button>
+    </form>
+
+    <div className="row row-cols-2">
+      <NotCompleted/>
+      <Completed/>
+    </div>
+  </div>
+)}
+
+export default App
