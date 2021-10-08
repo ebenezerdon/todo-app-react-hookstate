@@ -3,11 +3,11 @@ import store from '../store'
 
 const NotCompleted = () => {
   const { tasks } = useState(store)
-  const notCompletedTasks = tasks.get().filter(task => task.status === 'not-completed')
+  const notCompletedTasks = tasks.get().filter(task => !task.completed)
 
   const completeTask = task => {
     const taskIndex = tasks.get().indexOf(task)
-    tasks.nested(taskIndex).status.set('completed')
+    tasks.nested(taskIndex).completed.set(true)
   }
 
   return (

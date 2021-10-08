@@ -3,7 +3,7 @@ import store from '../store'
 
 const Completed = () => {
   const { tasks } = useState(store)
-  const completedTasks = tasks.get().filter(task => task.status === 'completed')
+  const completedTasks = tasks.get().filter(task => task.completed)
 
   const removeTask = task => {
     const taskIndex = tasks.get().indexOf(task)
