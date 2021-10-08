@@ -9,7 +9,7 @@ const App = () => {
 
   const addTask = event => {
     event.preventDefault()
-    tasks.merge([{text: inputValue.get(), status: 'not-completed'}])
+    tasks.merge([{text: inputValue.get(), completed: false}])
     inputValue.set('')
   }
 
@@ -17,20 +17,23 @@ const App = () => {
     <div className="container mt-5">
     <h1 className="mb-4">Whattodo!</h1>
 
-    <form className="mb-5" onSubmit={addTask}>
-      <input
-        type="text"
-        className="p-1 w-25"
-        value={inputValue.get()}
-        onChange={event => inputValue.set(event.target.value)}
-        placeholder="Add task here..."
-        required
-      />
+    <div className="container">
 
-      <button className="btn btn-primary ms-3" type="submit">
-        Add task
-      </button>
-    </form>
+      <form className="mb-5" onSubmit={addTask}>
+        <input
+          type="text"
+          className="p-1 w-25"
+          value={inputValue.get()}
+          onChange={event => inputValue.set(event.target.value)}
+          placeholder="Add task here..."
+          required
+        />
+
+        <button className="btn btn-primary ms-3" type="submit">
+          Add task
+        </button>
+      </form>
+    </div>
 
     <div className="row row-cols-2">
       <NotCompleted/>
