@@ -1,13 +1,11 @@
-import { useState, none } from '@hookstate/core'
-import store from '../store'
+import { tasks } from '../store'
 
 const Completed = () => {
-  const { tasks } = useState(store)
-  const completedTasks = tasks.get().filter(task => task.completed)
+  const completedTasks = tasks.filter(task => task.completed)
 
   const removeTask = task => {
-    const taskIndex = tasks.get().indexOf(task)
-    tasks.nested(taskIndex).set(none)
+    const taskIndex = tasks.indexOf(task)
+    tasks.splice(taskIndex, 1)
   }
 
   return (

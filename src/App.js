@@ -1,16 +1,14 @@
+import { useState } from 'react'
 import NotCompleted from './components/NotCompleted'
 import Completed from './components/Completed'
-import { useState } from '@hookstate/core'
-import store from './store'
+import { tasks } from './store'
 
 const App = () => {
-  const { tasks } = useState(store)
-  const inputValue = useState('')
+  const [inputValue, setInputValue] = useState()
 
   const addTask = event => {
     event.preventDefault()
-    tasks.merge([{text: inputValue.get(), completed: false}])
-    inputValue.set('')
+    tasks.push({text: inputValue, completed: false})
   }
 
   return (
@@ -23,8 +21,8 @@ const App = () => {
         <input
           type="text"
           className="p-1 w-25"
-          value={inputValue.get()}
-          onChange={event => inputValue.set(event.target.value)}
+          value={inputValue}
+          onChange={event => setInputValue(event.target.value)}
           placeholder="Add task here..."
           required
         />
