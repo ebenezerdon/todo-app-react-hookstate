@@ -1,14 +1,14 @@
-import { useState } from 'react'
 import NotCompleted from './components/NotCompleted'
 import Completed from './components/Completed'
 import { tasks } from './store'
 
 const App = () => {
-  const [inputValue, setInputValue] = useState()
+  let inputValue = ''
 
   const addTask = event => {
     event.preventDefault()
     tasks.push({text: inputValue, completed: false})
+    inputValue = ''
   }
 
   return (
@@ -22,7 +22,7 @@ const App = () => {
           type="text"
           className="p-1 w-25"
           value={inputValue}
-          onChange={event => setInputValue(event.target.value)}
+          onChange={event => inputValue = event.target.value}
           placeholder="Add task here..."
           required
         />
