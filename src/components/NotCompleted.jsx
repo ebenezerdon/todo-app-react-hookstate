@@ -1,13 +1,11 @@
-import { useState } from '@hookstate/core'
-import store from '../store'
+import { tasks } from '../store'
 
 const NotCompleted = () => {
-  const { tasks } = useState(store)
-  const notCompletedTasks = tasks.get().filter(task => !task.completed)
+  const notCompletedTasks = tasks.filter(task => !task.completed)
 
   const completeTask = task => {
-    const taskIndex = tasks.get().indexOf(task)
-    tasks.nested(taskIndex).completed.set(true)
+    const taskIndex = tasks.indexOf(task)
+    tasks[taskIndex].completed = true
   }
 
   return (
